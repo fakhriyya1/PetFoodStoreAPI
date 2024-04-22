@@ -10,5 +10,6 @@ namespace PetFoodStore.Repositories.Abstract
         Task<Animal> CreateAnimalAsync(AnimalCreateDto animalDto);
         Task<Animal?> UpdateAnimalAsync(int id, AnimalUpdateDto animalUpdateDto);
         Task<Animal?> SafeDeleteCategoryAsync(int id);
+        Task<bool> AnimalExists(int id);
     }
 }

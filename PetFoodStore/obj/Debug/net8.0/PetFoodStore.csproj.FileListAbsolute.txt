@@ -134,3 +134,4 @@ D:\Projects\PetFoodStore\PetFoodStore\obj\Debug\net8.0\refint\PetFoodStore.dll
 D:\Projects\PetFoodStore\PetFoodStore\obj\Debug\net8.0\PetFoodStore.pdb
 D:\Projects\PetFoodStore\PetFoodStore\obj\Debug\net8.0\PetFoodStore.genruntimeconfig.cache
 D:\Projects\PetFoodStore\PetFoodStore\obj\Debug\net8.0\ref\PetFoodStore.dll
+D:\Projects\PetFoodStore\PetFoodStore\obj\Debug\net8.0\PetFoodStore.sourcelink.json

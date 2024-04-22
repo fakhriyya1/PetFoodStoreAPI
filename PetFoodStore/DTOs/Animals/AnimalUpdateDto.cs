@@ -7,6 +7,6 @@ namespace PetFoodStore.DTOs.Animals
         [Required]
         public string Name { get; set; }
         [Required]
-        public int CategoryId { get; set; }
+        public int? CategoryId { get; set; }
     }
 }

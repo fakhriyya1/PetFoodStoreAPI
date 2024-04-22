@@ -36,7 +36,7 @@ namespace PetFoodStore.Controllers
             var animal = await animalRepo.GetAnimalByIdAsync(id);
 
             if (animal == null)
-                return BadRequest("Animal doesn't exist");
+                return NotFound("Animal doesn't exist");
 
             var animalDto = new AnimalDto
             {
@@ -57,18 +57,21 @@ namespace PetFoodStore.Controllers
             if (!await categoryRepo.CategoryExists(animalDto.CategoryId, CategoryType.Animal))
                 return BadRequest("Category doesn't exist!");
 
-            var category = await animalRepo.CreateAnimalAsync(animalDto);
+            var animal = await animalRepo.CreateAnimalAsync(animalDto);
 
-            return CreatedAtAction("GetById", new { id = category.Id }, category);
+            return CreatedAtAction("GetById", new { id = animal.Id }, animal);
         }
 
         [HttpPut("update/{id}")]
         public async Task<IActionResult> Update([FromRoute] int id, AnimalUpdateDto animalUpdateDto)
         {
+            if (animalUpdateDto.CategoryId == null)
+                ModelState.AddModelError("CategoryId", "Category cannot be null");
+
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-
-            if (!await categoryRepo.CategoryExists(animalUpdateDto.CategoryId, CategoryType.Animal))
+           
+            if (!await categoryRepo.CategoryExists((int)animalUpdateDto.CategoryId, CategoryType.Animal))
                 return BadRequest("Category doesn't exist!");
 
             var animal = await animalRepo.UpdateAnimalAsync(id, animalUpdateDto);

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PetFoodStore.DAL;
 using PetFoodStore.DTOs.Animals;
+using PetFoodStore.Enums;
 using PetFoodStore.Models;
 using PetFoodStore.Repositories.Abstract;
 
@@ -68,7 +69,7 @@ namespace PetFoodStore.Repositories.Concrete
                 return null;
 
             animal.Name = animalUpdateDto.Name;
-            animal.CategoryId = animalUpdateDto.CategoryId;
+            animal.CategoryId = (int)animalUpdateDto.CategoryId;
 
             context.Animals.Update(animal);
             await context.SaveChangesAsync();
@@ -87,6 +88,11 @@ namespace PetFoodStore.Repositories.Concrete
             await context.SaveChangesAsync();
 
             return animal;
+        }
+
+        public async Task<bool> AnimalExists(int id)
+        {
+            return await context.Animals.AnyAsync(a => a.Id == id && a.IsActive && a.Category.IsActive);
         }
     }
 }
